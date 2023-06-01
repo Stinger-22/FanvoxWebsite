@@ -1,5 +1,12 @@
-$bg-dark: #070707;
+@import url('https://fonts.googleapis.com/css?family=Kelly+Slab');
+
+$bg-black: #000000;
+$red: #DA251D;
+$bloody-red: #820004;
+$light-gray: #E9E9E9;
 
 body {
   margin: 0;
+
+  font-size: 100%;
 }
