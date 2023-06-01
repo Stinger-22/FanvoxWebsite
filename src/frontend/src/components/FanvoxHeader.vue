@@ -1,15 +1,18 @@
 <template>
   <header>
     <div id="header_img_container">
-      <img id="header_img" alt="Fanvox logo" src="../assets/header_bg_origin.jpg" width="1600" height="400">
+      <picture>
+        <source media="(max-width: 1100px)" srcset="../assets/img/header_bg_less.jpg" width="960" height="240">
+        <img id="header_img" alt="Fanvox logo" src="../assets/img/header_bg_origin.jpg" width="1600" height="400">
+      </picture>
     </div>
     <nav>
       <ul>
-        <li><router-link to="/"><span>Головна</span></router-link></li>
+        <li><router-link to="/">Головна</router-link></li>
         <li><router-link :to="{ name: 'News' }">Новини</router-link></li>
         <li><router-link :to="{ name: 'Catalog' }">Каталог аніме</router-link></li>
         <li><router-link :to="{ name: 'Dubbing' }">Зараз озвучується</router-link></li>
-        <li><router-link :to="{ name: 'About' }">Про нас</router-link></li>
+        <li><router-link :to="{ name: 'About' }">Підтримка</router-link></li>
       </ul>
     </nav>
   </header>
@@ -24,7 +27,7 @@ export default {
 <style lang="scss" scoped>
 
 header {
-  font-family: Kelly Slab, sans-serif;
+  font-family: Kelly Slab, Arial, Helvetica, sans-serif;
 }
 
 #header_img {
@@ -56,7 +59,7 @@ nav {
 }
 
 ul {
-  list-style:none;
+  list-style: none;
   margin: 0;
   padding: 0 7px;
 
@@ -71,5 +74,22 @@ ul {
   }
 }
 
+@media screen and (max-width: 950px) {
+  ul {
+    padding: 0;
+
+    li {
+      //padding: 0;
+      position: center;
+      display: block;
+      border-right: none;
+      border-bottom: 1px $light-gray solid;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+  }
+}
 
 </style>

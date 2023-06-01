@@ -18,7 +18,7 @@ module.exports = {
     loaderOptions: {
       scss: {
         additionalData: `
-                    @import "@/assets/global.scss";
+                    @import "@/assets/styling/global.scss";
                 `
       }
     }
