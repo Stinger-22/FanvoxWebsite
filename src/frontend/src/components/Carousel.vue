@@ -9,14 +9,13 @@
       </div>
 
       <!-- Next and previous buttons -->
-      <a class="prev" @click="slideBackward()">&#10094;</a>
-      <a class="next" @click="slideForward()">&#10095;</a>
+      <button class="prev" @click="slideBackward()">&#10094;</button>
+      <button class="next" @click="slideForward()">&#10095;</button>
     </div>
 
     <!-- The dots/circles -->
     <div class="dots-container">
-      <div v-for="(image, index) in images" class="dot" :class="{ active: image.isShown }">
-        <span @click="currentSlide({ index } + 1)"></span>
+      <div v-for="(image, index) in images" class="dot" :class="{ active: image.isShown }" @click="setSlide(index)">
       </div>
     </div>
   </div>
@@ -28,9 +27,10 @@ export default {
   data() {
     return {
       images: [
-        { title: "Megami.no.Café.Terrace.full.3925082.jpg", desc: "Літнє кафе та його богині", isShown: true},
+        { title: "Jigokuraku.jpg", desc: "Пеклорай", isShown: true},
+        { title: "Kono.Subarashii.Sekai.ni.Bakuen.wo.jpg", desc: "Цей прекрасний світ, благословлений вибухом", isShown: false},
         { title: "Kimetsu.no.Yaiba.3.jpg", desc: "Клинок, який знищує демонів 3", isShown: false},
-        { title: "Jigokuraku.jpg", desc: "Пеклорай", isShown: false},
+        { title: "Megami.no.Café.Terrace.full.3925082.jpg", desc: "Літнє кафе та його богині", isShown: false},
       ],
       timer: null,
       slideIndex : 0
@@ -38,11 +38,6 @@ export default {
   },
   mounted: function () {
     this.startAutoSlider();
-  },
-  computed: {
-    nextSlide() {
-
-    }
   },
   beforeUnmount() {
     clearInterval(this.timer);
@@ -67,6 +62,13 @@ export default {
       if (this.slideIndex < 0) {
         this.slideIndex = this.images.length - 1;
       }
+      this.images[this.slideIndex].isShown = true;
+      console.log("|tes")
+    },
+
+    setSlide: function (slideIndex) {
+      this.images[this.slideIndex].isShown = false;
+      this.slideIndex = slideIndex;
       this.images[this.slideIndex].isShown = true;
     }
   }
@@ -117,6 +119,7 @@ export default {
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
+  border-width: 0;
   border-radius: 0 5px 5px 0;
   user-select: none;
   opacity: 0.6;

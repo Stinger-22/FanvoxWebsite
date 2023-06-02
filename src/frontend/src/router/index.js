@@ -4,6 +4,7 @@ import AboutView from "@/views/AboutView.vue";
 import NewsView from "@/views/NewsView.vue";
 import CatalogView from "@/views/CatalogView.vue";
 import DubbingView from "@/views/DubbingView.vue";
+import PageNotFound from "@/views/PageNotFound.vue";
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/about',
     name: 'About',
     component: AboutView
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'PageNotFound',
+    component: PageNotFound
   }
 ]
 
