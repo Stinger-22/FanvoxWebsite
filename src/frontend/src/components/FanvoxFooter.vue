@@ -2,9 +2,9 @@
   <footer>
     <p class="heading-text">Корисні посилання</p>
     <div class="footer-section">
-      <a href="https://t.me/fvua_mkv">Patreon</a><br>
-      <a href="https://t.me/fvua_mkv">Buy Me a Coffee</a><br>
-      <a href="https://t.me/fvua_mkv">Diaka</a><br>
+      <a href="https://www.patreon.com/fvua">Patreon</a><br>
+      <a href="https://www.buymeacoffee.com/fanvoxua">Buy Me a Coffee</a><br>
+      <a href="https://fanvoxua.diaka.ua/onetime_diaka">Diaka</a><br>
       <a href="https://t.me/fanvoxua_re">Телеграм</a><br>
       <a href="https://t.me/fanvoxua_bot">Телеграм бот для перегляду аніме</a><br>
       <a href="https://t.me/fanvoxua_video">Серії в телеграмі</a><br>

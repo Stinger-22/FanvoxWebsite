@@ -8,11 +8,9 @@
 </template>
 
 <script>
-import Tile from "@/components/Tile.vue";
 
 export default {
   name: "OngoingGrid",
-  components: {Tile},
   data() {
     return {
       images: [

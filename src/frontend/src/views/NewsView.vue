@@ -1,12 +1,17 @@
 <template>
-  <div class="news">
-    <h1>This is a news page</h1>
-  </div>
+  <TemplatePage>
+    <div class="news">
+      <h1>This is a news page</h1>
+    </div>
+  </TemplatePage>
 </template>
 
 <script>
+import TemplatePage from "@/components/TemplatePage.vue";
+
 export default {
-  name: "NewsView"
+  name: "NewsView",
+  components: {TemplatePage}
 }
 </script>
 

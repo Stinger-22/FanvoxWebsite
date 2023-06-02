@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import AboutView from "@/views/AboutView.vue";
+import SupportView from "@/views/SupportView.vue";
 import NewsView from "@/views/NewsView.vue";
 import CatalogView from "@/views/CatalogView.vue";
 import DubbingView from "@/views/DubbingView.vue";
@@ -30,7 +30,7 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    component: AboutView
+    component: SupportView
   },
   {
     path: '/:catchAll(.*)',
