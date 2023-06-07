@@ -3,10 +3,11 @@ package com.fanvox.db.entitiy;
 import jakarta.persistence.*;
 
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table(name = "Studio")
-public class Studio {
+@Table(name = "Genre")
+public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,21 +15,24 @@ public class Studio {
     @Column(unique=true)
     private String name;
 
-    public Studio() {
+    @ManyToMany
+    private Set<Anime> animes;
+
+    public Genre() {
 
     }
 
-    public Studio(Long id, String name) {
+    public Genre(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -39,12 +43,20 @@ public class Studio {
         this.name = name;
     }
 
+    public Set<Anime> getAnimes() {
+        return animes;
+    }
+
+    public void setAnimes(Set<Anime> animes) {
+        this.animes = animes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Studio studio = (Studio) o;
-        return Objects.equals(id, studio.id) && Objects.equals(name, studio.name);
+        Genre genre = (Genre) o;
+        return Objects.equals(id, genre.id) && Objects.equals(name, genre.name);
     }
 
     @Override
@@ -54,7 +66,7 @@ public class Studio {
 
     @Override
     public String toString() {
-        return "Studio{" +
+        return "Genre{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
