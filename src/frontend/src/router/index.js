@@ -5,6 +5,7 @@ import NewsView from "@/views/NewsView.vue";
 import CatalogView from "@/views/CatalogView.vue";
 import DubbingView from "@/views/DubbingView.vue";
 import PageNotFound from "@/views/PageNotFound.vue";
+import AnimeView from "@/views/AnimeView.vue";
 
 const routes = [
   {
@@ -21,6 +22,12 @@ const routes = [
     path: '/catalog',
     name: 'Catalog',
     component: CatalogView
+  },
+  {
+    path: '/anime/:id',
+    name: 'Anime',
+    component: AnimeView,
+    props: true
   },
   {
     path: '/dubbing',

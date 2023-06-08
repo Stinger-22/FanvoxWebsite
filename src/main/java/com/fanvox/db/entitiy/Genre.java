@@ -1,5 +1,6 @@
 package com.fanvox.db.entitiy;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -10,12 +11,14 @@ import java.util.Set;
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "genre_id")
     private Long id;
 
     @Column(unique=true)
     private String name;
 
-    @ManyToMany
+    @JsonBackReference
+    @ManyToMany(mappedBy = "genres", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private Set<Anime> animes;
 
     public Genre() {
