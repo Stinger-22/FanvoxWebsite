@@ -11,7 +11,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/images/**").addResourceLocations(coversDir);
-        registry.addResourceHandler("/videos/**").addResourceLocations(videosDir);
+        registry.addResourceHandler("/api/images/**").addResourceLocations(coversDir);
+        registry.addResourceHandler("/api/videos/**").addResourceLocations(videosDir);
     }
 }

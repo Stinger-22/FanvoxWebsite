@@ -7,17 +7,25 @@
       </div>
       <div id="anime-container">
         <div class="anime-entity" v-for="anime in animes" :key="anime.id">
-          <div class="text-box">
-            <p>Оригінальна назва: {{ anime.originalName }}</p>
-            <p>Назва: {{ anime.ukrainianName }}</p>
-            <p>Рік виходу: {{ anime.year }}</p>
-            <p>Опис: {{ anime.description }}</p>
+          <div class="anime-title">
             <router-link :to="{ name: 'Anime', params: { id: anime.id } } ">
               {{ anime.ukrainianName }}
             </router-link>
           </div>
-          <div class="anime-cover">
-            <img v-bind:src="'http://localhost:8080/images/' + anime.coverImageName + '.jpg'" v-bind:alt="anime.coverImageName">
+          <div class="anime-details">
+            <div class="text-box">
+              <dt>Оригінальна назва: </dt><p>{{ anime.originalName }}</p>
+              <hr>
+              <dt>Назва: </dt>
+              <p>{{ anime.ukrainianName }}</p>
+              <hr>
+              <dt>Рік виходу: </dt><p>{{ anime.year }}</p>
+              <hr>
+              <dt>Опис: </dt><p>{{ anime.description }}</p>
+            </div>
+            <div class="anime-cover">
+              <img v-bind:src="'http://localhost:8080/api/images/' + anime.coverImageName + '.jpg'" v-bind:alt="anime.coverImageName">
+            </div>
           </div>
         </div>
       </div>
@@ -71,22 +79,55 @@ export default {
 }
 
 .anime-entity {
-  display: flex;
-  flex-wrap: nowrap;
-  border: 2px solid #f0f0f0;
+  padding: 10px;
+  border: 3px solid #f0f0f0;
   box-shadow: inset 0 0 0 1px #d4d4d4;
-  margin: 5px;
+  margin-bottom: 10px;
 
-  .text-box {
+  .anime-title {
     text-align: left;
-    border: 2px solid #f0f0f0;
-    box-shadow: inset 0 0 0 1px #d4d4d4;
+    width: 100%;
+    padding: 2px 0 0 2px;
+    background-color: $bloody-red;
+
+    a {
+      text-decoration-line: none;
+      text-transform: uppercase;
+      color: white;
+    }
+
+    a:hover {
+      text-decoration-line: underline;
+    }
   }
 
-  .anime-cover {
-    border: 2px solid #f0f0f0;
-    box-shadow: inset 0 0 0 1px #d4d4d4;
-    padding: 4px 4px 4px 5px
+  .anime-details {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-top: 3px;
+
+    .text-box {
+      text-align: left;
+      border: 2px solid #f0f0f0;
+      box-shadow: inset 0 0 0 1px #d4d4d4;
+
+      dt {
+        float: left;
+        color: darkorange;
+        margin: 0 5px 0 0;
+        padding-left: 3px;
+      }
+
+      p {
+        padding-left: 3px;
+      }
+    }
+
+    .anime-cover {
+      border: 2px solid #f0f0f0;
+      box-shadow: inset 0 0 0 1px #d4d4d4;
+      padding: 4px 4px 4px 5px
+    }
   }
 }
 

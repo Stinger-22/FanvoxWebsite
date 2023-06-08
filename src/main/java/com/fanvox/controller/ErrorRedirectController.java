@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class ErrorRedirectController implements ErrorController {
-    @RequestMapping("/error")
-    public String handleError() {
-        //do something like logging
-        return "forward:/error";
+    private static final String PATH = "/error";
+
+    @RequestMapping(value = PATH)
+    public String error() {
+        return "forward:/";
     }
 }

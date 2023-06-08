@@ -1,22 +1,34 @@
 <template>
-  <TemplatePage>
-    <div class="anime-container">
-      <div class="anime-entity">
+  <div id="anime-container">
+    <div class="anime-entity">
+      <div class="anime-title">
+          <h2>{{ anime.ukrainianName }}</h2>
+      </div>
+      <div class="anime-details">
         <div class="text-box">
-          <p>Оригінальна назва: {{ anime.originalName }}</p>
-          <p>Назва: {{ anime.ukrainianName }}</p>
-          <p>Рік виходу: {{ anime.year }}</p>
-          <p>Опис: {{ anime.description }}</p>
-          <router-link :to="{ name: 'Anime', params: { id: anime.id } } ">
-            {{ anime.ukrainianName }}
-          </router-link>
+          <dt>Оригінальна назва: </dt><p>{{ anime.originalName }}</p>
+          <hr>
+          <dt>Назва: </dt>
+          <p>{{ anime.ukrainianName }}</p>
+          <hr>
+          <dt>Рік виходу: </dt><p>{{ anime.year }}</p>
+          <hr>
+          <dt>Жанр: </dt>
+          <hr>
+          <dt>Студія: </dt>
+          <hr>
+          <dt>Опис: </dt><p>{{ anime.description }}</p>
         </div>
         <div class="anime-cover">
-          <img v-bind:src="'http://localhost:8080/images/' + anime.coverImageName + '.jpg'" v-bind:alt="anime.coverImageName">
+          <img v-bind:src="'http://localhost:8080/api/images/' + anime.coverImageName + '.jpg'" v-bind:alt="anime.coverImageName">
         </div>
       </div>
+      <div class="media-player">
+
+        <video></video>
+      </div>
     </div>
-  </TemplatePage>
+  </div>
 </template>
 
 <script>
@@ -36,6 +48,7 @@ export default {
     axios.get("http://localhost:8080/api/anime/" + this.id)
         .then(response => {
           this.anime = response.data
+          console.log(this.anime)
         })
         .catch(e => {
           console.log(e.message)
@@ -46,23 +59,56 @@ export default {
 
 <style lang="scss" scoped>
 
-.anime-entity {
-  display: flex;
-  flex-wrap: nowrap;
-  border: 2px solid #f0f0f0;
-  box-shadow: inset 0 0 0 1px #d4d4d4;
-  margin: 5px;
+#anime-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  background-color: $light-gray;
+  position: center;
+}
 
-  .text-box {
+.anime-entity {
+  padding: 10px;
+  border: 3px solid #f0f0f0;
+  box-shadow: inset 0 0 0 1px #d4d4d4;
+  margin-bottom: 10px;
+
+  .anime-title {
     text-align: left;
-    border: 2px solid #f0f0f0;
-    box-shadow: inset 0 0 0 1px #d4d4d4;
+    width: 100%;
+    padding: 2px 0 0 2px;
+    background-color: $bloody-red;
+
+    color: white;
+    text-transform: uppercase;
   }
 
-  .anime-cover {
-    border: 2px solid #f0f0f0;
-    box-shadow: inset 0 0 0 1px #d4d4d4;
-    padding: 4px 4px 4px 5px
+  .anime-details {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-top: 3px;
+
+    .text-box {
+      text-align: left;
+      border: 2px solid #f0f0f0;
+      box-shadow: inset 0 0 0 1px #d4d4d4;
+
+      dt {
+        float: left;
+        color: darkorange;
+        margin: 0 5px 0 0;
+        padding-left: 3px;
+      }
+
+      p {
+        padding-left: 3px;
+      }
+    }
+
+    .anime-cover {
+      border: 2px solid #f0f0f0;
+      box-shadow: inset 0 0 0 1px #d4d4d4;
+      padding: 4px 4px 4px 5px
+    }
   }
 }
 
