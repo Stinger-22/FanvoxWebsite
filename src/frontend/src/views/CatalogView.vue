@@ -58,7 +58,6 @@ export default {
         });
     axios.get("http://localhost:8080/api/anime/all")
         .then(response => {
-          console.log(response)
           this.animes = response.data
         })
         .catch(e => {
