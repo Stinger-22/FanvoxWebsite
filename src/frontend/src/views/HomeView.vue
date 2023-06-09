@@ -17,15 +17,13 @@
 <script>
 
 import Carousel from "@/components/Carousel.vue";
-import SearchBar from "@/components/SearchBar.vue";
 import OngoingGrid from "@/components/OngoingGrid.vue";
 
 export default {
   name: 'HomeView',
   components: {
     OngoingGrid,
-    SearchBar,
-    Carousel,
+    Carousel
   }
 }
 </script>

@@ -1,12 +1,13 @@
 <template>
   <TemplatePage>
     <div id="catalog-container">
-      <SearchBar></SearchBar>
-      <div id="tag-container">
-        <button v-for="genre in genres">{{genre.name}}</button>
-      </div>
+<!--      <SearchBar></SearchBar>-->
+      <input type="text" v-model="search" placeholder="Пошук">
+<!--      <div id="tag-container">-->
+<!--        <button v-for="genre in genres">{{genre.name}}</button>-->
+<!--      </div>-->
       <div id="anime-container">
-        <div class="anime-entity" v-for="anime in animes" :key="anime.id">
+        <div class="anime-entity" v-for="anime in matchingAnimes" :key="anime.id">
           <div class="anime-title">
             <router-link :to="{ name: 'Anime', params: { id: anime.id } } ">
               {{ anime.ukrainianName }}
@@ -42,34 +43,33 @@
 <script>
 import TemplatePage from "@/components/TemplatePage.vue";
 import axios from "axios";
-import SearchBar from "@/components/SearchBar.vue";
+import {computed, ref} from "vue";
 
 export default {
   name: "CatalogView",
-  components: {SearchBar, TemplatePage},
-  data() {
-    return {
-      genres: [
-      ],
-      animes: [
-      ]
-    }
-  },
-  mounted() {
-    axios.get("http://localhost:8080/api/genre/all")
-        .then(response => {
-          this.genres = response.data
-        })
-        .catch(e => {
-          console.log(e.message)
-        });
+  components: {TemplatePage},
+  setup() {
+    const search = ref('')
+
+    let animes = ref([])
+    let matchingAnimes;
     axios.get("http://localhost:8080/api/anime/all")
         .then(response => {
-          this.animes = response.data
+          animes.value = response.data
         })
         .catch(e => {
           console.log(e.message)
         });
+
+    matchingAnimes = computed(() => {
+      return animes.value.filter((anime) => {
+        return anime.originalName.toLowerCase().includes(search.value.toLowerCase()) || anime.ukrainianName.toLowerCase().includes(search.value.toLowerCase())
+      })
+    })
+
+    return {
+      search, animes, matchingAnimes
+    }
   }
 }
 </script>
@@ -77,7 +77,12 @@ export default {
 <style lang="scss" scoped>
 
 #catalog-container {
-
+  input[type=text] {
+    padding: 6px;
+    margin: 8px 0;
+    border: none;
+    width: 30%;
+  }
 }
 
 #tag-container {
@@ -117,7 +122,7 @@ export default {
     padding-top: 3px;
 
     .text-box {
-      text-align: justify;
+      text-align: left;
       border: 2px solid #f0f0f0;
       box-shadow: inset 0 0 0 1px #d4d4d4;
 
