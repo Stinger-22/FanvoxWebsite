@@ -13,9 +13,11 @@
           <hr>
           <dt>Рік виходу: </dt><p>{{ anime.year }}</p>
           <hr>
-          <dt>Жанр: </dt><p>?</p>
+          <dt>Жанр: </dt>
+          <span v-for="(genre, index) in anime.genres">{{genre.name}}<span v-if="index !== anime.genres.length - 1">, </span></span>
           <hr>
-          <dt>Студія: </dt><p>?</p>
+          <dt>Студія: </dt>
+          <span v-for="(studio, index) in anime.studios">{{studio.name}}<span v-if="index !== anime.studios.length - 1">, </span></span>
           <hr>
           <dt>Опис: </dt><p>{{ anime.description }}</p>
         </div>
@@ -24,11 +26,10 @@
         </div>
       </div>
       <div class="media-player">
-        <CustomizedVideo :video="'http://localhost:8080/api/videos/' + currentEpisode + '.mp4'"></CustomizedVideo>
+        <CustomizedVideo v-if="currentEpisode" :video="'http://localhost:8080/api/videos/' + currentEpisode + '.mp4'"></CustomizedVideo>
         <div class="episodes-buttons-container">
           <ul class="episodes">
-<!--            <li class="episode-button" v-for="(episode, index) in episodes">{{index + 1}} серія</li>-->
-            <li class="episode-button" v-for="(episode, index) in episodes" v-on:click="changeEpisode(index)">{{index + 1}} серія</li>
+            <li class="episode-button" v-for="(episode, index) in anime.episodes" v-on:click="changeEpisode(index)">{{index + 1}} серія</li>
           </ul>
         </div>
       </div>
@@ -48,25 +49,21 @@ export default {
   data() {
     return {
       anime: {},
-      episodes: [
-          "megumin01-online",
-          "megumin02-online",
-          "megumin03-online",
-          "megumin04-online",
-          "megumin05-online",
-          "megumin06-online"
-      ],
       currentEpisode: {},
       player: {}
     }
   },
   mounted() {
-    this.currentEpisode = this.episodes[0]
     this.player = document.getElementById('justPlayer');
 
     axios.get("http://localhost:8080/api/anime/" + this.id)
         .then(response => {
           this.anime = response.data
+          this.anime.episodes.sort((a, b) => {
+            return a.episodeNumber - b.episodeNumber
+          })
+          this.currentEpisode = this.anime.episodes[0].episodeName
+          this.changeEpisode(0)
         })
         .catch(e => {
           console.log(e.message)
@@ -113,7 +110,7 @@ export default {
   methods: {
     changeEpisode: function(newEpisodeIndex) {
       this.player.pause();
-      this.currentEpisode = this.episodes[newEpisodeIndex]
+      this.currentEpisode = this.anime.episodes[newEpisodeIndex].episodeName
       this.player.load();
     },
   }
@@ -127,6 +124,9 @@ export default {
   margin: 0 auto;
   background-color: $light-gray;
   position: center;
+
+  animation-name: smooth-appear;
+  animation-duration: 0.2s;
 }
 
 .anime-entity {
@@ -146,9 +146,10 @@ export default {
     padding-top: 3px;
 
     .text-box {
-      text-align: left;
+      text-align: justify;
       border: 2px solid #f0f0f0;
       box-shadow: inset 0 0 0 1px #d4d4d4;
+      width: 100%;
 
       dt {
         float: left;

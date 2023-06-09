@@ -12,3 +12,8 @@ $hover-orange: #ff5733;
 
   font-size: 20px;
 }
+
+@keyframes smooth-appear {
+  0%{opacity:0;}
+  100%{opacity:1;}
+}

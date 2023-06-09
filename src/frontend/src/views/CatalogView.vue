@@ -1,7 +1,7 @@
 <template>
   <TemplatePage>
-    <div class="catalog">
-      <h1>This is a catalog page</h1>
+    <div id="catalog-container">
+      <SearchBar></SearchBar>
       <div id="tag-container">
         <button v-for="genre in genres">{{genre.name}}</button>
       </div>
@@ -21,6 +21,12 @@
               <hr>
               <dt>Рік виходу: </dt><p>{{ anime.year }}</p>
               <hr>
+              <dt>Жанр: </dt>
+              <span v-for="(genre, index) in anime.genres">{{genre.name}}<span v-if="index !== anime.genres.length - 1">, </span></span>
+              <hr>
+              <dt>Студія: </dt>
+              <span v-for="(studio, index) in anime.studios">{{studio.name}}<span v-if="index !== anime.studios.length - 1">, </span></span>
+              <hr>
               <dt>Опис: </dt><p>{{ anime.description }}</p>
             </div>
             <div class="anime-cover">
@@ -36,10 +42,11 @@
 <script>
 import TemplatePage from "@/components/TemplatePage.vue";
 import axios from "axios";
+import SearchBar from "@/components/SearchBar.vue";
 
 export default {
   name: "CatalogView",
-  components: {TemplatePage},
+  components: {SearchBar, TemplatePage},
   data() {
     return {
       genres: [
@@ -68,6 +75,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+#catalog-container {
+
+}
 
 #tag-container {
   display: block;
@@ -106,7 +117,7 @@ export default {
     padding-top: 3px;
 
     .text-box {
-      text-align: left;
+      text-align: justify;
       border: 2px solid #f0f0f0;
       box-shadow: inset 0 0 0 1px #d4d4d4;
 
@@ -115,10 +126,17 @@ export default {
         color: darkorange;
         margin: 0 5px 0 0;
         padding-left: 3px;
+        font-size: 18px;
       }
 
       p {
         padding-left: 3px;
+        padding-right: 3px;
+        font-size: 18px;
+      }
+
+      span {
+        font-size: 18px;
       }
     }
 

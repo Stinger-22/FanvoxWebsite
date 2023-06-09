@@ -1,7 +1,6 @@
 <template>
   <div class="video-container">
     <Carousel></Carousel>
-    <SearchBar></SearchBar>
     <div id="short-about-us">
       <p>Ми українська команда озвучення аніме. Працюємо як на кількість, так і на якість. Також займаємся озвученням мультсеріалів, серіалів, ігрового та youtube-відео українською.</p>
     </div>
@@ -43,6 +42,9 @@ export default {
   margin: 0 auto;
   background-color: $light-gray;
   position: center;
+
+  animation-name: smooth-appear;
+  animation-duration: 0.2s;
 }
 
 #short-about-us {

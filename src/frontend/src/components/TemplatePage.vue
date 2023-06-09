@@ -26,6 +26,9 @@ export default {
 
   display: grid;
   grid-template-columns: 20% 60% 20%;
+
+  animation-name: smooth-appear;
+  animation-duration: 0.2s;
 }
 
 #news-side {

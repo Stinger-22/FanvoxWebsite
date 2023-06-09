@@ -1,5 +1,5 @@
 <template>
-  <div class="video-container show-controls">
+  <div class="video-container show-controls" @keydown.esc="escapeFullscreen()">
     <div class="wrapper">
       <div class="video-timeline">
         <div class="progress-area">
@@ -143,11 +143,13 @@ export default {
     });
 
     fullScreenBtn.addEventListener("click", () => {
-      container.classList.toggle("fullscreen");
-      if(document.fullscreenElement) {
+      // container.classList.toggle("fullscreen");
+      if (document.fullscreenElement) {
+        container.classList.remove("fullscreen");
         fullScreenBtn.classList.replace("fa-compress", "fa-expand");
         return document.exitFullscreen();
       }
+      container.classList.add("fullscreen");
       fullScreenBtn.classList.replace("fa-expand", "fa-compress");
       container.requestFullscreen();
     });
@@ -159,11 +161,32 @@ export default {
     playPauseBtn.addEventListener("click", () => this.videoPlaySwitch());
     videoTimeline.addEventListener("mousedown", () => videoTimeline.addEventListener("mousemove", draggableProgressBar));
     document.addEventListener("mouseup", () => videoTimeline.removeEventListener("mousemove", draggableProgressBar));
+
+    document.onkeydown = function(evt) {
+      evt = evt || window.event;
+      var isEscape = false;
+      if ("key" in evt) {
+        isEscape = (evt.key === "Escape" || evt.key === "Esc");
+      } else {
+        isEscape = (evt.keyCode === 27);
+      }
+      if (isEscape) {
+        try {
+          this.escapeFullscreen();
+        }
+        catch (e) {
+
+        }
+      }
+    };
   },
   methods: {
     videoPlaySwitch: function () {
       this.mainVideo.paused ? this.mainVideo.play() : this.mainVideo.pause()
     },
+    escapeFullscreen: function () {
+      document.querySelector(".video-container").classList.remove("fullscreen");
+    }
   }
 }
 </script>

@@ -41,11 +41,15 @@ public class Anime {
 
     private String coverImageName;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "anime_id")
+    private Set<Episode> episodes;
+
     public Anime() {
 
     }
 
-    public Anime(Long id, String originalName, String ukrainianName, int year, String description, Set<Studio> studios, Set<Genre> genres, String coverImageName) {
+    public Anime(Long id, String originalName, String ukrainianName, int year, String description, Set<Studio> studios, Set<Genre> genres, String coverImageName, Set<Episode> episodes) {
         this.id = id;
         this.originalName = originalName;
         this.ukrainianName = ukrainianName;
@@ -54,6 +58,7 @@ public class Anime {
         this.studios = studios;
         this.genres = genres;
         this.coverImageName = coverImageName;
+        this.episodes = episodes;
     }
 
     public Long getId() {
@@ -120,17 +125,25 @@ public class Anime {
         this.coverImageName = coverImageName;
     }
 
+    public Set<Episode> getEpisodes() {
+        return episodes;
+    }
+
+    public void setEpisodes(Set<Episode> episodes) {
+        this.episodes = episodes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Anime anime = (Anime) o;
-        return year == anime.year && Objects.equals(id, anime.id) && Objects.equals(originalName, anime.originalName) && Objects.equals(ukrainianName, anime.ukrainianName) && Objects.equals(description, anime.description) && Objects.equals(studios, anime.studios) && Objects.equals(genres, anime.genres) && Objects.equals(coverImageName, anime.coverImageName);
+        return year == anime.year && Objects.equals(id, anime.id) && Objects.equals(originalName, anime.originalName) && Objects.equals(ukrainianName, anime.ukrainianName) && Objects.equals(description, anime.description) && Objects.equals(studios, anime.studios) && Objects.equals(genres, anime.genres) && Objects.equals(coverImageName, anime.coverImageName) && Objects.equals(episodes, anime.episodes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, originalName, ukrainianName, year, description, studios, genres, coverImageName);
+        return Objects.hash(id, originalName, ukrainianName, year, description, studios, genres, coverImageName, episodes);
     }
 
     @Override
@@ -144,6 +157,7 @@ public class Anime {
                 ", studios=" + studios +
                 ", genres=" + genres +
                 ", coverImageName='" + coverImageName + '\'' +
+                ", episodes=" + episodes +
                 '}';
     }
 }

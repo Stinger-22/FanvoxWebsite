@@ -1,5 +1,5 @@
 <template>
-  <div class="video-container">
+  <div class="error-container">
     <p id="error-404">404</p>
     <p id="error-text">Page Not Found</p>
     <br>
@@ -14,7 +14,7 @@ export default {
 
 <style lang="scss" scoped>
 
-.video-container {
+.error-container {
   max-width: 1280px;
   margin: 0 auto;
   background-color: $light-gray;
@@ -29,6 +29,9 @@ export default {
   #error-text {
     font-size: 6em;
   }
+
+  animation-name: smooth-appear;
+  animation-duration: 0.2s;
 }
 
 </style>
