@@ -19,6 +19,7 @@ public interface AnimeRepository extends JpaRepository<Anime, Long> {
 //    List<Anime> findByGenres();
 
     Anime getAnimeById(Long id);
+    List<Anime> findByFullyDubbedFalse();
 
 //
 //    @Query("select a from Anime a where lower(a.originalName) like lower(concat('%', :search, '%')) " +

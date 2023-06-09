@@ -45,11 +45,14 @@ public class Anime {
     @JoinColumn(name = "anime_id")
     private Set<Episode> episodes;
 
+    private String torrentLink;
+    private boolean fullyDubbed;
+
     public Anime() {
 
     }
 
-    public Anime(Long id, String originalName, String ukrainianName, int year, String description, Set<Studio> studios, Set<Genre> genres, String coverImageName, Set<Episode> episodes) {
+    public Anime(Long id, String originalName, String ukrainianName, int year, String description, Set<Studio> studios, Set<Genre> genres, String coverImageName, Set<Episode> episodes, String torrentLink, boolean fullyDubbed) {
         this.id = id;
         this.originalName = originalName;
         this.ukrainianName = ukrainianName;
@@ -59,6 +62,8 @@ public class Anime {
         this.genres = genres;
         this.coverImageName = coverImageName;
         this.episodes = episodes;
+        this.torrentLink = torrentLink;
+        this.fullyDubbed = fullyDubbed;
     }
 
     public Long getId() {
@@ -133,17 +138,33 @@ public class Anime {
         this.episodes = episodes;
     }
 
+    public String getTorrentLink() {
+        return torrentLink;
+    }
+
+    public void setTorrentLink(String torrentLink) {
+        this.torrentLink = torrentLink;
+    }
+
+    public boolean isFullyDubbed() {
+        return fullyDubbed;
+    }
+
+    public void setFullyDubbed(boolean fullyDubbed) {
+        this.fullyDubbed = fullyDubbed;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Anime anime = (Anime) o;
-        return year == anime.year && Objects.equals(id, anime.id) && Objects.equals(originalName, anime.originalName) && Objects.equals(ukrainianName, anime.ukrainianName) && Objects.equals(description, anime.description) && Objects.equals(studios, anime.studios) && Objects.equals(genres, anime.genres) && Objects.equals(coverImageName, anime.coverImageName) && Objects.equals(episodes, anime.episodes);
+        return year == anime.year && fullyDubbed == anime.fullyDubbed && Objects.equals(id, anime.id) && Objects.equals(originalName, anime.originalName) && Objects.equals(ukrainianName, anime.ukrainianName) && Objects.equals(description, anime.description) && Objects.equals(studios, anime.studios) && Objects.equals(genres, anime.genres) && Objects.equals(coverImageName, anime.coverImageName) && Objects.equals(episodes, anime.episodes) && Objects.equals(torrentLink, anime.torrentLink);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, originalName, ukrainianName, year, description, studios, genres, coverImageName, episodes);
+        return Objects.hash(id, originalName, ukrainianName, year, description, studios, genres, coverImageName, episodes, torrentLink, fullyDubbed);
     }
 
     @Override
@@ -158,6 +179,8 @@ public class Anime {
                 ", genres=" + genres +
                 ", coverImageName='" + coverImageName + '\'' +
                 ", episodes=" + episodes +
+                ", torrentLink='" + torrentLink + '\'' +
+                ", fullyDubbed=" + fullyDubbed +
                 '}';
     }
 }

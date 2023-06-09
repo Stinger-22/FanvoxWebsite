@@ -18,6 +18,10 @@ public class AnimeService {
         return animeRepository.findAll();
     }
 
+    public Iterable<Anime> getDubbing() {
+        return animeRepository.findByFullyDubbedFalse();
+    }
+
     public Optional<Anime> getByAnimeId(Long id) {
         return animeRepository.findById(id);
     }

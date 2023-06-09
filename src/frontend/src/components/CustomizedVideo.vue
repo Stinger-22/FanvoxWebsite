@@ -162,23 +162,12 @@ export default {
     videoTimeline.addEventListener("mousedown", () => videoTimeline.addEventListener("mousemove", draggableProgressBar));
     document.addEventListener("mouseup", () => videoTimeline.removeEventListener("mousemove", draggableProgressBar));
 
-    document.onkeydown = function(evt) {
-      evt = evt || window.event;
-      var isEscape = false;
-      if ("key" in evt) {
-        isEscape = (evt.key === "Escape" || evt.key === "Esc");
-      } else {
-        isEscape = (evt.keyCode === 27);
-      }
-      if (isEscape) {
-        try {
-          this.escapeFullscreen();
-        }
-        catch (e) {
-
-        }
-      }
-    };
+    if (document.addEventListener) {
+      document.addEventListener('fullscreenchange', this.escapeFullscreen, false);
+      document.addEventListener('mozfullscreenchange', this.escapeFullscreen, false);
+      document.addEventListener('MSFullscreenChange', this.escapeFullscreen, false);
+      document.addEventListener('webkitfullscreenchange', this.escapeFullscreen, false);
+    }
   },
   methods: {
     videoPlaySwitch: function () {

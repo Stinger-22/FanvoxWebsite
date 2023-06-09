@@ -19,12 +19,17 @@ public class AnimeController {
     }
 
     @GetMapping("/all")
-    public Iterable<Anime> getAllGenres() {
+    public Iterable<Anime> getAll() {
         return animeService.getAll();
     }
 
     @GetMapping("/{id}")
     public Optional<Anime> getAnimeById(@PathVariable Long id) {
         return animeService.getByAnimeId(id);
+    }
+
+    @GetMapping("/dubbing")
+    public Iterable<Anime> getDubbing() {
+        return animeService.getDubbing();
     }
 }

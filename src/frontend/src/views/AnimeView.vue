@@ -20,6 +20,10 @@
           <span v-for="(studio, index) in anime.studios">{{studio.name}}<span v-if="index !== anime.studios.length - 1">, </span></span>
           <hr>
           <dt>Опис: </dt><p>{{ anime.description }}</p>
+          <hr>
+          <dt>Скачати: </dt>
+          <br>
+          <a :href="anime.torrentLink" class="torrent-link">µ</a>
         </div>
         <div class="anime-cover">
           <img v-bind:src="'http://localhost:8080/api/images/' + anime.coverImageName + '.jpg'" v-bind:alt="anime.coverImageName">
@@ -29,7 +33,7 @@
         <CustomizedVideo v-if="currentEpisode" :video="'http://localhost:8080/api/videos/' + currentEpisode + '.mp4'"></CustomizedVideo>
         <div class="episodes-buttons-container">
           <ul class="episodes">
-            <li class="episode-button" v-for="(episode, index) in anime.episodes" v-on:click="changeEpisode(index)">{{index + 1}} серія</li>
+            <li class="episode-button" v-for="(episode, index) in anime.episodes" v-on:click="changeEpisode(index)">{{episode.episodeNumber}} серія</li>
           </ul>
         </div>
       </div>
@@ -112,7 +116,7 @@ export default {
       this.player.pause();
       this.currentEpisode = this.anime.episodes[newEpisodeIndex].episodeName
       this.player.load();
-    },
+    }
   }
 }
 </script>
@@ -160,6 +164,20 @@ export default {
 
       p {
         padding-left: 3px;
+      }
+
+      .torrent-link {
+        background-color: $torrent-green;
+        display: block;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        font-size: 30px;
+        font-weight: 700;
+        margin-left: 5px;
       }
     }
 
