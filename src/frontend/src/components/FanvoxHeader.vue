@@ -52,7 +52,7 @@ nav {
     }
 
     &:hover {
-        color: #ff5733;
+        color: $hover-orange;
         transition: 0.5s;
     }
   }

@@ -24,11 +24,7 @@
         </div>
       </div>
       <div class="media-player">
-        <div id="video-container">
-          <video id="justPlayer">
-            <source v-bind:src="'http://localhost:8080/api/videos/' + currentEpisode + '.mp4'" type="video/mp4">
-          </video>
-        </div>
+        <CustomizedVideo :video="'http://localhost:8080/api/videos/' + currentEpisode + '.mp4'"></CustomizedVideo>
         <div class="episodes-buttons-container">
           <ul class="episodes">
 <!--            <li class="episode-button" v-for="(episode, index) in episodes">{{index + 1}} серія</li>-->
@@ -43,10 +39,11 @@
 <script>
 import TemplatePage from "@/components/TemplatePage.vue";
 import axios from "axios";
+import CustomizedVideo from "@/components/CustomizedVideo.vue";
 
 export default {
   name: "AnimeView",
-  components: {TemplatePage},
+  components: {CustomizedVideo, TemplatePage},
   props: ['id'],
   data() {
     return {
@@ -124,7 +121,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 #anime-container {
   max-width: 1280px;
@@ -180,21 +176,7 @@ img {
 }
 
 .media-player {
-  #video-container {
-    display: block;
-    max-width: 1280px;
-    width: 100%;
-    height: auto;
-    font-family: Poppins, sans-serif;
-  }
 
-  video {
-    display: block;
-    max-width: 1280px;
-    width: 100%;
-    height: auto;
-    background-color: black;
-  }
 }
 
 .episodes-buttons-container {

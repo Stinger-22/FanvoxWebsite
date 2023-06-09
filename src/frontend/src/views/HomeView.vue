@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="video-container">
     <Carousel></Carousel>
     <SearchBar></SearchBar>
     <div id="short-about-us">
@@ -38,7 +38,7 @@ export default {
   margin: 0;
 }
 
-.container {
+.video-container {
   max-width: 1280px;
   margin: 0 auto;
   background-color: $light-gray;

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="video-container">
     <p id="error-404">404</p>
     <p id="error-text">Page Not Found</p>
     <br>
@@ -14,7 +14,7 @@ export default {
 
 <style lang="scss" scoped>
 
-.container {
+.video-container {
   max-width: 1280px;
   margin: 0 auto;
   background-color: $light-gray;
