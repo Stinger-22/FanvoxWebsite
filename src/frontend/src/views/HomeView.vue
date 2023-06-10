@@ -1,5 +1,5 @@
 <template>
-  <div class="video-container">
+  <div class="home-container">
     <Carousel></Carousel>
     <div id="short-about-us">
       <p>Ми українська команда озвучення аніме. Працюємо як на кількість, так і на якість. Також займаємся озвученням мультсеріалів, серіалів, ігрового та youtube-відео українською.</p>
@@ -9,7 +9,13 @@
     <OngoingGrid></OngoingGrid>
     <br>
 
-    <p>cras pulvinar mattis nunc sed blandit libero volutpat sed cras ornare arcu dui vivamus arcu felis bibendum ut tristique et egestas quis ipsum suspendisse ultrices gravida dictum fusce ut placerat orci nulla pellentesque dignissim enim sit amet venenatis urna cursus eget nunc scelerisque viverra mauris in aliquam sem fringilla ut morbi tincidunt augue interdum velit euismod in pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id aliquet risus feugiat in ante metus dictum at tempor commodo ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia at quis risus sed vulputate odio ut enim blandit volutpat maecenas volutpat blandit</p>
+    <h2>Почали озвучувати: Персона 4 / Persona 4 The Animation</h2>
+    <div class="new-dub">
+      <router-link :to="'/anime/4'">
+        <img :src="require(`../assets/img/news/persona_start.jpg`)" alt="persona_start.jpg">
+      </router-link>
+      <p>Коли Нарукамі Юу переїжджає до віддаленого містечка Інаба, він очікує набагато більше тиші та спокою, ніж він звик у великому місті. Натомість тишу було зруйновано, і єдиною тишею стала тиша могили, коли містечко охопила низка таємничих убивств і викрадень. Поліція загнана в глухий кут і Юу приєднується до групи з восьми інших підлітків у відчайдушній спробі розгадати таємницю. Таємниця якимось чином пов’язана як з місцевими погодними умовами і з дивним світом відеоігор, у який можуть потрапити Юу, його друзі та загадковий вбивця. Це місце, де кожен повинен володіти унікальною зброєю та навчитися використовувати дивовижні сили, якщо хоче вижити.</p>
+    </div>
 
   </div>
 </template>
@@ -35,7 +41,7 @@ export default {
   margin: 0;
 }
 
-.video-container {
+.home-container {
   max-width: 1280px;
   margin: 0 auto;
   background-color: $light-gray;
@@ -43,6 +49,17 @@ export default {
 
   animation-name: smooth-appear;
   animation-duration: 0.2s;
+
+  .new-dub {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    img {
+      width: 80%;
+    }
+  }
 }
 
 #short-about-us {

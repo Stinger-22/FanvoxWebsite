@@ -2,7 +2,7 @@
   <div id="anime-container">
     <div class="anime-entity">
       <div class="anime-title">
-          <h2>{{ anime.ukrainianName }}</h2>
+        <h2>{{ anime.ukrainianName }}</h2>
       </div>
       <div class="anime-details">
         <div class="text-box">

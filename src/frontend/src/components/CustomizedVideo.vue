@@ -189,7 +189,7 @@ export default {
   justify-content: center;
 }
 
-.video-container{
+.video-container {
   width: 100%;
   user-select: none;
   overflow: hidden;
@@ -200,7 +200,7 @@ export default {
   font-family: 'Poppins', sans-serif;
 }
 
-.video-container.fullscreen{
+.video-container.fullscreen {
   max-width: 100%;
   width: 100%;
   height: 100vh;
@@ -217,7 +217,7 @@ export default {
   transition: all 0.08s ease;
 }
 
-.video-container.show-controls .wrapper{
+.video-container.show-controls .wrapper {
   opacity: 1;
   bottom: 0;
   transition: all 0.13s ease;
